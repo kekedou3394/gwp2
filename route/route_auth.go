@@ -8,20 +8,20 @@ import (
 
 // GET /login
 // Show the login page
-func Login(writer http.ResponseWriter, request *http.Request) {
+func login(writer http.ResponseWriter, request *http.Request) {
 	t := parseTemplateFiles("login.layout", "public.navbar", "login")
 	t.Execute(writer, nil)
 }
 
 // GET /signup
 // Show the signup page
-func Signup(writer http.ResponseWriter, request *http.Request) {
+func signup(writer http.ResponseWriter, request *http.Request) {
 	generateHTML(writer, nil, "login.layout", "public.navbar", "signup")
 }
 
 // POST /signup
 // Create the user account
-func SignupAccount(writer http.ResponseWriter, request *http.Request) {
+func signupAccount(writer http.ResponseWriter, request *http.Request) {
 	err := request.ParseForm()
 	if err != nil {
 		danger(err, "Cannot parse form")
@@ -38,8 +38,8 @@ func SignupAccount(writer http.ResponseWriter, request *http.Request) {
 }
 
 // POST /authenticate
-// Authenticate the user given the email and password
-func Authenticate(writer http.ResponseWriter, request *http.Request) {
+// authenticate the user given the email and password
+func authenticate(writer http.ResponseWriter, request *http.Request) {
 	err := request.ParseForm()
 	user, err := data.UserByEmail(request.PostFormValue("email"))
 	if err != nil {
@@ -65,7 +65,7 @@ func Authenticate(writer http.ResponseWriter, request *http.Request) {
 
 // GET /logout
 // Logs the user out
-func Logout(writer http.ResponseWriter, request *http.Request) {
+func logout(writer http.ResponseWriter, request *http.Request) {
 	cookie, err := request.Cookie("_cookie")
 	if err != http.ErrNoCookie {
 		warning(err, "Failed to get cookie")

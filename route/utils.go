@@ -20,11 +20,11 @@ type Configuration struct {
 	Static       string
 }
 
-var Config Configuration
+var config Configuration
 var logger *log.Logger
 
 // Convenience function for printing to stdout
-func P(a ...interface{}) {
+func p(a ...interface{}) {
 	fmt.Println(a...)
 }
 
@@ -43,8 +43,8 @@ func loadConfig() {
 		log.Fatalln("Cannot open config file", err)
 	}
 	decoder := json.NewDecoder(file)
-	Config = Configuration{}
-	err = decoder.Decode(&Config)
+	config = Configuration{}
+	err = decoder.Decode(&config)
 	if err != nil {
 		log.Fatalln("Cannot get configuration from file", err)
 	}
@@ -107,6 +107,6 @@ func warning(args ...interface{}) {
 }
 
 // version
-func Version() string {
+func version() string {
 	return "0.1"
 }

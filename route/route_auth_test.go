@@ -9,7 +9,7 @@ import (
 
 func Test_Get_Login(t *testing.T) {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/login", Login)
+	mux.HandleFunc("/login", login)
 
 	writer := httptest.NewRecorder()
 	request, _ := http.NewRequest("GET", "/login", nil)

@@ -8,7 +8,7 @@ import (
 
 // GET /err?msg=
 // shows the error message page
-func Err(writer http.ResponseWriter, request *http.Request) {
+func err(writer http.ResponseWriter, request *http.Request) {
 	vals := request.URL.Query()
 	_, err := session(writer, request)
 	if err != nil {
@@ -18,7 +18,7 @@ func Err(writer http.ResponseWriter, request *http.Request) {
 	}
 }
 
-func Index(writer http.ResponseWriter, request *http.Request) {
+func index(writer http.ResponseWriter, request *http.Request) {
 
 	threads, err := data.Threads()
 	if err != nil {

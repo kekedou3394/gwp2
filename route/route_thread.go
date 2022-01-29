@@ -9,7 +9,7 @@ import (
 
 // GET /threads/new
 // Show the new thread form page
-func NewThread(writer http.ResponseWriter, request *http.Request) {
+func newThread(writer http.ResponseWriter, request *http.Request) {
 	_, err := session(writer, request)
 	if err != nil {
 		http.Redirect(writer, request, "/login", 302)
@@ -20,7 +20,7 @@ func NewThread(writer http.ResponseWriter, request *http.Request) {
 
 // POST /signup
 // Create the user account
-func CreateThread(writer http.ResponseWriter, request *http.Request) {
+func createThread(writer http.ResponseWriter, request *http.Request) {
 	sess, err := session(writer, request)
 	if err != nil {
 		http.Redirect(writer, request, "/login", 302)
@@ -43,7 +43,7 @@ func CreateThread(writer http.ResponseWriter, request *http.Request) {
 
 // GET /thread/read
 // Show the details of the thread, including the posts and the form to write a post
-func ReadThread(writer http.ResponseWriter, request *http.Request) {
+func readThread(writer http.ResponseWriter, request *http.Request) {
 	vals := request.URL.Query()
 	uuid := vals.Get("id")
 	thread, err := data.ThreadByUUID(uuid)
@@ -61,7 +61,7 @@ func ReadThread(writer http.ResponseWriter, request *http.Request) {
 
 // POST /thread/post
 // Create the post
-func PostThread(writer http.ResponseWriter, request *http.Request) {
+func postThread(writer http.ResponseWriter, request *http.Request) {
 	sess, err := session(writer, request)
 	if err != nil {
 		http.Redirect(writer, request, "/login", 302)
